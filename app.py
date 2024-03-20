@@ -3,8 +3,8 @@ import streamlit as st
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import FAISS
+from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
@@ -32,7 +32,7 @@ def get_text_chunks(raw_text):
     
 
 def get_vc(chunks):
-    embeddings = OpenAI()
+    embeddings = OpenAIEmbeddings()
     vc = FAISS.from_texts(texts=chunks, embedding=embeddings)
     return vc
     
