@@ -58,6 +58,9 @@ def handle_userinput(user_question = ""):
             st.write(bot_template.replace(
                 "{{MSG}}", message.content), unsafe_allow_html=True)
 
+def placeholder_conversation_handler(input):
+    return {'chat_history': [{'content': "Please process your PDFs before asking questions."}]}
+
 def main():
     
     load_dotenv()
@@ -65,8 +68,8 @@ def main():
     st.set_page_config(page_title="Chat With PDF By Moin Sabri", page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
 
-    if "conversation" not in st.session_state:
-        st.session_state.conversation = None
+    if "conversation" not in st.session_state or st.session_state.conversation is None:
+        st.session_state.conversation = placeholder_conversation_handler
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
         
