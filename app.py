@@ -32,7 +32,7 @@ def get_text_chunks(raw_text):
     
 
 def get_vc(chunks):
-    embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+    embeddings = OpenAI()
     vc = FAISS.from_texts(texts=chunks, embedding=embeddings)
     return vc
     
